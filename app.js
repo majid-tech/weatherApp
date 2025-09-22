@@ -1,3 +1,18 @@
+let searchbtn = document.getElementById('search');
+
+searchbtn.addEventListener("click", async () => {
+    try {
+        let city = document.getElementById('city').value;  // no #
+        let response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&key=RCVDQQK6PKXL2S6J6DUYRHXZ9&contentType=json`);
+        let data = await response.json();
+        console.log(data);
+    } 
+    catch (error) {
+        console.error("Error:", error);
+    }
+});
+
+
 // const img = document.querySelector('img');
 // const searchbtn = document.querySelector('#search-button');
 // let searchinput = document.querySelector('#search').value;
