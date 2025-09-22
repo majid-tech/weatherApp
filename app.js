@@ -5,18 +5,19 @@ let result = document.getElementById('result');
 searchbtn.addEventListener("click", async () => {
     try {
         let city = document.getElementById('city').value;  // no #
-        let response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&key=RCVDQQK6PKXL2S6J6DUYRHXZ9&contentType=json`);
+        let response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=RCVDQQK6PKXL2S6J6DUYRHXZ9&contentType=json`);
         let data = await response.json();
         // display the data
         result.innerHTML = `
             <h2>${data.resolvedAddress}</h2>
-            <p>Current Temperature: ${data.currentConditions.temp}°F</p>
+            <p>Current Temperature: ${data.currentConditions.temp}°C</p>
             <p>Weather: ${data.currentConditions.conditions}</p>
             <p>Humidity: ${data.currentConditions.humidity}%</p>
-            <p>Wind Speed: ${data.currentConditions.windspeed} mph</p>
+            <p>Wind Speed: ${data.currentConditions.windspeed} km/h</p>
             <p>Timezone: ${data.timezone}</p>
         `;
     } 
+    
     catch (error) {
         console.error("Error:", error);
     }
